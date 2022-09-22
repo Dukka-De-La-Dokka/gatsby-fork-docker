@@ -21,6 +21,7 @@ bash ./gatsby.sh
 ```
 bash ./download.sh
 ```
+7. Go into the created repository
 
 ## Check if the project works well under the designated node.js version
 * Develop command : `yarn develop --host 0.0.0.0`  
@@ -70,7 +71,7 @@ https://github.com/gatsbyjs/gatsby-starter-hello-world/archive/refs/heads/master
 ```
 bash ./gatsby.sh
 ```
-7. From VSCode menu, click 'open folder' and set the directory to `/home/node/workdir/<repository name>/` and click ok (VSCode somehow does not allow you to move to the created respository, so you need to move yourself manually)
+7. From VSCode menu, click 'open folder' and set the directory to `/home/node/workdir/<repository name>/` and click ok (VSCode does not allow you to move to the created respository, so you need to move yourself manually)
 8. When you finish, just close the VSCode's container window, and right click the contaier name at the original workspace and select 'stop container' or 'remove container'
 
 ## Notices
