@@ -13,21 +13,25 @@ The automation of the first some steps of the development for all gatsby [starte
 4. `docker compose up -d`
 5. `docker exec -it <your container name> bash`
 6. Execute preferred shell script file
-* `gatsby.sh` - if you prefer a regular 'gatsby new' method
-* `download.sh` - if you prefer to download a particular point of commit or release from the gatsby repository
+* `app-init.sh` - if you prefer a regular 'gatsby new' method
+* `dl-init.sh` - if you prefer to download a particular point of commit or release from the gatsby repository
 ```
-bash ./gatsby.sh
+bash ./app-init.sh
 ```
 ```
-bash ./download.sh
+bash ./dl-init.sh
 ```
 7. Go into the created repository
 
 ## Check if the project works well under the designated node.js version
 * Develop command : `yarn develop --host 0.0.0.0`  
 (required to add host option since this is  inside docker container)
+* Run formatter : `yarn format`
 * Build command : `yarn build`
+* Check built contents : `yarn serve --host 0.0.0.0`
+* Test command : `yarn test`
 * Clear the cache : `yarn clean`
+* Alternative command for develop : `yarn start --host 0.0.0.0`
 
 The project works well, then....
 
@@ -43,15 +47,23 @@ bash ../push.sh
 * REPODIR : decide your repository name
 * UPSTREAM_ADDR :
   * If you want to use 'gatsby new' method, set the root repository url of the each gatsby starter.
-  * If you want to download a particular commit from gatsby starter, right click over the source download link, then copy the url and paste into here. The url has to be finish with `.tar.gz`, so please change the final extension `.zip` to `.tar.gz`  
+  * If you want to download a particular commit from gatsby starter, right click over the source download link, then copy the url and paste into here. The url has to be finish with `.tar.gz`, so please change the final extension `.zip` to `.tar.gz`
 
-Not work
+Works with UPSTREAM_ADDR when executing app-init.sh
 ```
-https://github.com/gatsbyjs/gatsby-starter-hello-world/archive/refs/heads/master.zip
+https://github.com/gatsbyjs/gatsby-starter-hello-world
 ```
-Works
+Works with  UPSTREAM_ADDR when executing app-init.sh
+```
+https://github.com/gatsbyjs/gatsby-starter-hello-world.git
+```
+Works with UPSTREAM_ADDR when executing dl-init.sh
 ```
 https://github.com/gatsbyjs/gatsby-starter-hello-world/archive/refs/heads/master.tar.gz
+```
+Not work with UPSTREAM_ADDR when executing dl-init.sh
+```
+https://github.com/gatsbyjs/gatsby-starter-hello-world/archive/refs/heads/master.zip
 ```
 * GIT_UNAME : set your git user name
 * GIT_UMAIL : set your git email address
@@ -69,10 +81,11 @@ https://github.com/gatsbyjs/gatsby-starter-hello-world/archive/refs/heads/master
 5. You are now in the home directory of the container. From VSCode menu, click 'open folder' and set the directory to `/home/node/workdir/` and click ok
 6. You are now in the workdir directory. Please execute your preferred shell script to copy the starter into your local machine, e.g. :
 ```
-bash ./gatsby.sh
+bash ./app-init.sh
 ```
 7. From VSCode menu, click 'open folder' and set the directory to `/home/node/workdir/<repository name>/` and click ok (VSCode does not allow you to move to the created respository, so you need to move yourself manually)
 8. When you finish, just close the VSCode's container window, and right click the contaier name at the original workspace and select 'stop container' or 'remove container'
+9. If you want to continue for the another gatsby starter, please open `workdir` folder via VSCode's menu, then go to the next step (when you go inside or go outside of the repository, you better not use the terminal command move)
 
 ## Notices
 * If you want to modify or upgrade the base image of this docker, please log in as root user and run the command as root user. (or just modify Dockerfile to stock the process for the next development stage)

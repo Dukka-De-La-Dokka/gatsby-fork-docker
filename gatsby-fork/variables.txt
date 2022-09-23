@@ -1,5 +1,4 @@
 REPODIR="hello-world"
-# enter a git url for gatsby new method, enter a tar.gz url for downloading the source
 UPSTREAM_ADDR="https://github.com/gatsbyjs/gatsby-starter-hello-world"
 GIT_UNAME="test-user"
 GIT_UMAIL="test@test.com"
